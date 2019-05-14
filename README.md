@@ -1,3 +1,5 @@
 # Home Devices
 
-- Raspberry or Volumio configs/trips
+- Raspberry 
+  - Video and [HDMI](video.md)
+- Volumio configs/trips
