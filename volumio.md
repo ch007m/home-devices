@@ -23,7 +23,9 @@ Step by step instructions
 
     `cd youtube`
 
-- From here we cann install the plugin with the following command:
+- From here we can [install the plugin](https://volumio.github.io/docs/Plugin_System/Plugin_System_Overview.html) with the following command:
+  **Remark**: If the plugin has already been installed, remove the entry from the plugins config file `/data/configuration/plugins.json`
+  and next remove the folder `/data/plugins/music_service/youtube/`
   ```
   volumio plugin install
   This command will install the plugin on your device
@@ -69,4 +71,5 @@ Step by step instructions
   updated 4 packages in 16.455s
   ```
   
-- Insert apikey as explained by dvo post  
+- Enable the Youtube the plugin using Volumio UI
+- Click on the `log` button, and you will be redirected to Google to select/authorize your GMail account  
