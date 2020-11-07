@@ -58,3 +58,9 @@ Step by step instructions
   Status :Youtube Playback Successfully Installed, Do you want to enable the plugin now?
   Downloading plugin at http://127.0.0.1:3000/plugin-serve/youtube.zip<br>END DOWNLOAD: http://127.0.0.1:3000/plugin-serve/youtube.zip<br>Creating install location<br>Unpacking plugin<br>Checking for duplicate plugin<br>Copying plugin to location<br>Installing necessary utilities<br>Installing youtube<br>Finalizing installation<br>Finalizing installation
   ```
+- Now we need to update the node package - `ytdl-core`: 
+  
+  ```
+  cd /data/plugins/music_service/youtube/
+  npm install ytdl-core@latest
+  ```
