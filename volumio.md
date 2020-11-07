@@ -77,6 +77,24 @@ https://community.volumio.org/t/plugin-youtube-for-volumio/5990/270
 #### Step by step instructions using forked plugin
 
 ```bash
+ssh volumio@192.168.1.100
+volumio@192.168.1.100's password:
+                       ___
+                      /\_ \                        __
+         __  __    ___\//\ \    __  __    ___ ___ /\_\    ___
+        /\ \/\ \  / __`\\ \ \  /\ \/\ \ /' __` __`\/\ \  / __`\
+        \ \ \_/ |/\ \L\ \\_\ \_\ \ \_\ \/\ \/\ \/\ \ \ \/\ \L\ \
+         \ \___/ \ \____//\____\\ \____/\ \_\ \_\ \_\ \_\ \____/
+          \/__/   \/___/ \/____/ \/___/  \/_/\/_/\/_/\/_/\/___/
+
+             Free Audiophile Linux Music Player - Version 2.0
+
+          C 2015 Michelangelo Guarise - Volumio Team - Volumio.org
+
+
+Volumio Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+
 wget https://github.com/patrickkfkan/volumio-plugins/archive/master.zip
 mkdir plugins
 miniunzip master.zip -d plugins
