@@ -63,4 +63,10 @@ Step by step instructions
   ```
   cd /data/plugins/music_service/youtube/
   npm install ytdl-core@latest
+  npm WARN youtube@1.0.1 No repository field.
+  
+  + ytdl-core@4.0.3
+  updated 4 packages in 16.455s
   ```
+  
+- Insert apikey as explained by dvo post  
