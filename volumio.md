@@ -5,7 +5,7 @@
 Review discussion and explanation to set up the Google Developer API Key/token which is needed:
 https://community.volumio.org/t/plugin-youtube-for-volumio/5990/270
 
-Step by step instructions
+#### Step by step instructions using official plugin
 
 - Get the youtube plugin: 
 
@@ -25,7 +25,7 @@ Step by step instructions
 
 - From here we can [install the plugin](https://volumio.github.io/docs/Plugin_System/Plugin_System_Overview.html) with the following command:
   **Remark**: If the plugin has already been installed, remove the entry from the plugins config file `/data/configuration/plugins.json`
-  and next remove the folder `/data/plugins/music_service/youtube/`
+  , next remove the folder `/data/plugins/music_service/youtube/` and dont forget to reboot.
   ```
   volumio plugin install
   This command will install the plugin on your device
@@ -73,3 +73,16 @@ Step by step instructions
   
 - Enable the Youtube the plugin using Volumio UI
 - Click on the `log` button, and you will be redirected to Google to select/authorize your GMail account  
+
+#### Step by step instructions using forked plugin
+
+```bash
+wget https://github.com/patrickkfkan/volumio-plugins/archive/master.zip
+mkdir plugins
+miniunzip master.zip -d plugins
+cd plugins/volumio-plugins-master/plugins/music_service/
+volumio plugin install
+
+cd /data/plugins/music_service/youtube/
+npm install ytdl-core@latest
+```
