@@ -84,6 +84,7 @@ is the reason why it is needed to use a Google API key/ClientID/SecretID authori
 ```
 YouTube Data API v3	.../auth/youtube.readonly	View your YouTube account
 ``` 
+such approach has been implemented within the following github project of `patrickkfkan` - `https://github.com/patrickkfkan/volumio-plugins/`
 
 **Instructions**
 
