@@ -76,15 +76,16 @@ https://community.volumio.org/t/plugin-youtube-for-volumio/5990/270
 
 #### Step by step instructions using forked Youtube plugin
 
-The previous instructions relies on the official plugin managed under the following github [project](https://github.com/volumio/volumio-plugins/tree/master/plugins/music_service/youtube)
-and where the Google API Youtube node package is used to OAuth the user using your [Google Account](https://github.com/volumio/volumio-plugins/blob/master/plugins/music_service/youtube/index.js#L923)
+The previous instructions relies on the official plugin managed under the github [project](https://github.com/volumio/volumio-plugins/tree/master/plugins/music_service/youtube)
+and where the `Google API Youtube node package` is used to `OAuth` the user using your [Google Account](https://github.com/volumio/volumio-plugins/blob/master/plugins/music_service/youtube/index.js#L923)
 
 Due to recent changes to the way that Youtube accepts remote applications to access their platform, the approach described with the official Volumio plugin will fail and this 
 is the reason why it is needed to use a Google API key/ClientID/SecretID authorized to access the following scope:
 ```
 YouTube Data API v3	.../auth/youtube.readonly	View your YouTube account
 ``` 
-such approach has been implemented within the following github project of `patrickkfkan` - `https://github.com/patrickkfkan/volumio-plugins/`
+Such an approach has been implemented within the following github project of `patrickkfkan` - `https://github.com/patrickkfkan/volumio-plugins/`
+and instructions to install it like to create the Google API key are described hereafter: 
 
 **Instructions**
 
