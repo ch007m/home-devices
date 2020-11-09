@@ -189,7 +189,7 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   
 - From the left menu, click on the `Credentials` button and select from the popup list - `Api Key`
 
-  ![](images/popup_credentials.png?raw=true)
+  ![](images/popup_credentials.png)
   
 - An api key will be generated as showed hereafter
 
@@ -199,7 +199,7 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 
   ![](images/edit_api_key.png?raw=true)
   
-- From the left menu, click on the `Credentials` button and `OAuthClient ID` from the popup list
+- From the left menu, click on the `Credentials` button; next on the button `+ CREATE CREDENTIALS` and select `OAuthClient ID` from the popup list
 - Select as `application type`, `Desktop App` and name it `volumio-youtube-USERNAME`
 
   ![](images/create_oauth_client_id.png?raw=true)
