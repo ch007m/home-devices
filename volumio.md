@@ -27,7 +27,7 @@ you can also use the UI and define it manually - `http://volumio.local/plugin/sy
 
   ![](images/static-ip-address.png?raw=true)
 
-**REMARK**: Please enable the `Full Settings Mode` under the `system settings` - `http://volumio.local/plugin/system_controller-system`
+**WARNING**: Please enable the `Full Settings Mode` under the `system settings` - `http://volumio.local/plugin/system_controller-system` to been able to define the IP address using the UI !!
 
 ### YouTube plugin
 
