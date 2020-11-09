@@ -162,10 +162,10 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   **WARNING**: Use a Google Suite user to perform the following steps otherwise it will not be possible to register the API as an `internal` application
   but only as an `external` application that Google must approve and where it is needed to have `URLs` they can be accessed remotely to approve your request !!
   
-- From the left menu, click on the `dashboard` button 
+- From the left menu, click on the `dashboard` button
   ![](images/dashboard.png?raw=true)
 
-  if not yet done, enable the `YouTube Data API v3` API/Service by clicking on the `+ Enable APIS and Service` button 
+  if not yet done, enable the `YouTube Data API v3` API/Service by clicking on the `+ Enable APIS and Service` button
   ![](images/enable_apis_services_button.png?raw=true)
   
 - Select from the library `YouTube Data API v3` and click on the button `Enable`
@@ -175,10 +175,9 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   ![](images/popup_credentials.png?raw=true)
   
 - An api key will be generated as showed hereafter
-
   ![](images/api_key_created.png?raw=true)
 
-- Within the screen listing the different `credentials`, select the one which has been created and rename it to `volumio`    
+- Within the screen listing the different `credentials`, select the one which has been created and rename it to `volumio`
   ![](images/edit_api_key.png?raw=true)
   
 - From the left menu, click on the `Credentials` button and `OAuthClient ID` from the popup list
