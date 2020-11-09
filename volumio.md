@@ -171,13 +171,14 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 - Select from the library `YouTube Data API v3` and click on the button `Enable`
   ![](images/enable_youtube_service.png?raw=true)
   
-- From the left menu, click on the `Credentials` button and select from the popup list - `Api Keys`
+- From the left menu, click on the `Credentials` button and select from the popup list - `Api Key`
   ![](images/popup_credentials.png?raw=true)
   
 - An api key will be generated as showed hereafter
+
   ![](images/api_key_created.png?raw=true)
 
-- Within the screen listing the different key, select the one which has been created and rename it to `volumio`    
+- Within the screen listing the different `credentials`, select the one which has been created and rename it to `volumio`    
   ![](images/edit_api_key.png?raw=true)
   
 - From the left menu, click on the `Credentials` button and `OAuthClient ID` from the popup list
