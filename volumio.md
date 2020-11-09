@@ -120,13 +120,13 @@ cd plugins/volumio-plugins-master/plugins/music_service/youtube
 volumio plugin install
 ```
 
-- Next update one of the node package to use the latest `4.0.3`
+- Move to the location where the plugin has been installed and next update one of the node package to use the latest `4.0.3`
 ```bash
 cd /data/plugins/music_service/youtube/
 rm -rf node_modules
 npm install ytdl-core@latest
 ```
-- Check that the packages.json filehas been updated correctly
+- Check that the `packages.json` file has been updated accordingly
 ```bash
 volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 {
@@ -156,3 +156,25 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 	}
 }
 ```
+- Create a Google Api Key to access the `Youtube Data API` with the help the google developer console `https://console.developers.google.com/`.
+  **WARNING**: Use a Google Suite user to perform the following steps otherwise it will not be possible to register the API as an `internal` application
+  but only as an `external` application that Google must approve and where it is needed to have `URLs` they can be accessed remotely to approve your request !!
+  
+- From the left menu, click on the `dashboard` button and next on `+ Enable APIS and Service`
+  ![](images/enable_apis_services_button.png?raw=true)
+  
+- Select from the library `YouTube Data API v3` and click on the button `Enable`
+- From the left menu, click on the `Credentials` button and from the popup list `Api Keys`
+
+- From the left menu, click on the `Credentials` button and from the popup list `OAuthClient ID` 
+- Select as `application type`, `Desktop App` and name it `volumio-youtube-USERNAME`
+- From the left menu, click on the `Oauth Consent Screen` button,  edit the application by clicking on the button `edit app`
+- Add your email address as requested and specify the nalme of the application `volumio`
+- Click on the button next and click on the button `add or remove scopes` to select `.../auth/youtube.readonly`
+- finally click on save and continue
+- You have finished :-)
+- Copy from the Credentials screen the `API Key` screen of the `Volumio key` 
+- Next select under the list of the `Oauth2 Client ID`, the Client ID `volumio-youtube-USERNAME` and then you will be able to get the `client ID` and `Secret ID`
+ 
+- It is time now to configure the `Youtube plugin` using the `Volumio UI` and to pass as parameters your `Api Key`, `client ID` and `Secret ID` 
+  ![](images/volumio-youtube-plugin.png?raw=true)
