@@ -3,12 +3,31 @@
 Table of Contents
 =================
 
+   * [Enable SSH](#enable-ssh)
+   * [Define static IP Address](#define-static-ip-address)
    * [YouTube plugin](#youtube-plugin)
       * [Step by step instructions using official plugin](#step-by-step-instructions-using-official-plugin)
       * [Step by step instructions using forked Youtube plugin](#step-by-step-instructions-using-forked-youtube-plugin)
          * [SSH and install the plugin](#ssh-and-install-the-plugin)
          * [Create Google API Key](#create-google-api-key)
          * [Configure the Youtube plugin](#configure-the-youtube-plugin)
+
+
+### Enable SSH
+
+- To enable ssh and been able to access volumio remotely, follow the instructions as defined here: https://volumio.github.io/docs/User_Manual/SSH.html
+- To avoid having to type every time the `volumio` password, copy securely your public key:
+  
+  `ssh-copy-id -i ~/.ssh/id_rsa.pub volumio@volumio.local`
+  
+### Define static IP Address
+
+If an `IP static address` is needed to access volumio, the ` /etc/network/interfaces` file can be edited manually as described [here](https://community.volumio.org/t/volumio-2-and-static-ip-addresses/3828/5), otherwise
+you can also use the UI and define it manually - `http://volumio.local/plugin/system_controller-network`
+
+  ![](images/static-ip-address.png?raw=true)
+
+**REMARK**: Please enable the `Full Settings Mode` under the `system settings` - `http://volumio.local/plugin/system_controller-system`
 
 ### YouTube plugin
 
@@ -204,7 +223,7 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 
   ![](images/create_oauth_client_id.png?raw=true)
   
-- When this process is done, it is needed the let the API to be able to access the `Youtube Data API` to read/view content
+- When this process is done, it is needed to let the API to be able to access the `Youtube Data API` to read/view content
   So from the left menu, click on the `Oauth Consent Screen` button, and next edit the application by clicking on the button `edit app`
   ![](images/oauth_consent_edit_app.png?raw=true)
   
