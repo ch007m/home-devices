@@ -87,7 +87,7 @@ YouTube Data API v3	.../auth/youtube.readonly	View your YouTube account
 Such an approach has been implemented within the following github project of `patrickkfkan` - `https://github.com/patrickkfkan/volumio-plugins/`
 and instructions to install it like to create the Google API key are described hereafter: 
 
-**Instructions**
+#### SSH and install the plugin
 
 - ssh to your volumio pi server
 ```bash
@@ -157,6 +157,9 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
 	}
 }
 ```
+
+#### Create Google API Key
+
 - Create a Google Api Key to able to access the `Youtube Data API` with the help the google developer console `https://console.developers.google.com/`.
 
   **WARNING**: Use a Google Suite user to perform the following steps otherwise it will not be possible to register the API as an `internal` application
@@ -195,7 +198,6 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   So from the left menu, click on the `Oauth Consent Screen` button, and next edit the application by clicking on the button `edit app`
   ![](images/oauth_consent_edit_app.png?raw=true)
   
-  
   Add your email address as requested and specify the name of the application: `volumio`
   
   ![](images/oauth_consent.png?raw=true)
@@ -210,6 +212,8 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
     
   Finally click on `save and continue` button. You have finished :-)
   
+#### Configure the Youtube plugin
+
 - Copy from the Credentials screen the `API Key` screen of the `Volumio key` 
 - Next select under the list of the `Oauth2 Client ID`, the Client ID `volumio-youtube-USERNAME` and then you will be able to get the `client ID` and `Secret ID`
  
