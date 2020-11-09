@@ -162,7 +162,10 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   **WARNING**: Use a Google Suite user to perform the following steps otherwise it will not be possible to register the API as an `internal` application
   but only as an `external` application that Google must approve and where it is needed to have `URLs` they can be accessed remotely to approve your request !!
   
-- From the left menu, click on the `dashboard` button and next on `+ Enable APIS and Service` to add (if not yet done) the `YouTube Data API v3` API/Service
+- From the left menu, click on the `dashboard` button 
+  ![](images/dashboard.png?raw=true)
+
+  if not yet done, enable the `YouTube Data API v3` API/Service by clicking on the `+ Enable APIS and Service` button 
   ![](images/enable_apis_services_button.png?raw=true)
   
 - Select from the library `YouTube Data API v3` and click on the button `Enable`
