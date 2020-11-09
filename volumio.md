@@ -1,5 +1,15 @@
 ## Volumio
 
+Table of Contents
+=================
+
+   * [YouTube plugin](#youtube-plugin)
+      * [Step by step instructions using official plugin](#step-by-step-instructions-using-official-plugin)
+      * [Step by step instructions using forked Youtube plugin](#step-by-step-instructions-using-forked-youtube-plugin)
+         * [SSH and install the plugin](#ssh-and-install-the-plugin)
+         * [Create Google API Key](#create-google-api-key)
+         * [Configure the Youtube plugin](#configure-the-youtube-plugin)
+
 ### YouTube plugin
 
 Review discussion and explanation to set up the Google Developer API Key/token which is needed:
