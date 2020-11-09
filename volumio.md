@@ -88,6 +88,7 @@ such approach has been implemented within the following github project of `patri
 
 **Instructions**
 
+- ssh to your volumio pi server
 ```bash
 ssh volumio@192.168.1.100
 volumio@192.168.1.100's password:
@@ -106,13 +107,52 @@ volumio@192.168.1.100's password:
 
 Volumio Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
-
+```
+- Next, download the forked github project, unzip it and move to the folder of the youtube plugin
+```bash
 wget https://github.com/patrickkfkan/volumio-plugins/archive/master.zip
 mkdir plugins
 miniunzip master.zip -d plugins
-cd plugins/volumio-plugins-master/plugins/music_service/
+cd plugins/volumio-plugins-master/plugins/music_service/youtube
+```
+- Install the volumio plugin using the volumio command line tool
+```bash
 volumio plugin install
+```
 
+- Next update one of the node package to use the latest `4.0.3`
+```bash
 cd /data/plugins/music_service/youtube/
+rm -rf node_modules
 npm install ytdl-core@latest
+```
+- Check that the packages.json filehas been updated correctly
+```bash
+volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
+{
+	"name": "youtube",
+	"version": "0.1.0",
+	"description": "Youtube playback and public sharing for the Volumio",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Cris Pintea <cris@pintea.net>, Stefan Laesser <sla89@gmx-topmail.de> (reworked by Patrick Kan <patrickkfkan@gmail.com>)",
+	"license": "MIT",
+	"volumio_info": {
+		"prettyName": "Youtube Playback",
+		"plugin_type": "music_service",
+		"icon": "fa-youtube",
+		"boot_priority": 10
+	},
+	"dependencies": {
+		"googleapis": "45.0.0",
+		"iso8601-duration": "1.0.6",
+		"kew": "0.7.0",
+		"md5": "2.2.1",
+		"node-cache": "5.0.1",
+		"v-conf": "^1.4.0",
+		"ytdl-core": "^4.0.3"
+	}
+}
 ```
