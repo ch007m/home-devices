@@ -41,7 +41,7 @@ EOF
 - Install the LibreElec image for Kodi `LibreELEC-RPi4.arm-9.2.6.img.gz` using BalenaEtcher or Raspi PI Manager
   on the SD Card
 - Insert the card on the Pi4, plug the HDMI cable to a port HDMI supporting your source on the SmartTV 
-- Use the TV to [setup LibreElec](https://www.linuxbabe.com/raspberry-pi/libreelec-raspberry-pi) such as network, ...
+- Use the remote control of the TV to [setup LibreElec](https://www.linuxbabe.com/raspberry-pi/libreelec-raspberry-pi) such as network, ...
 - SSH to the LibreElec VM
   ```
   ssh root@192.168.1.20
@@ -83,6 +83,18 @@ Your HDMI monitor may only support a limited set of formats. To find out which f
 
 1. Set the output format to VGA 60Hz (hdmi_group=1 and hdmi_mode=1) and boot up your Raspberry Pi
 2. Enter the following command to give a list of CEA-supported modes: `/opt/vc/bin/tvservice -m CEA`
+   ```
+   tvservice -m CEA
+   Group CEA has 21 modes:
+              mode 1: 640x480 @ 60Hz 4:3, clock:25MHz progressive
+              mode 2: 720x480 @ 60Hz 4:3, clock:27MHz progressive
+              mode 3: 720x480 @ 60Hz 16:9, clock:27MHz progressive
+              mode 4: 1280x720 @ 60Hz 16:9, clock:74MHz progressive
+              mode 5: 1920x1080 @ 60Hz 16:9, clock:74MHz interlaced
+              mode 6: 720x480 @ 60Hz 4:3, clock:27MHz x2 interlaced
+              mode 7: 720x480 @ 60Hz 16:9, clock:27MHz x2 interlaced
+     (prefer) mode 16: 1920x1080 @ 60Hz 16:9, clock:148MHz progressive
+   ```
 3. Enter the following command to give a list of DMT-supported modes: `/opt/vc/bin/tvservice -m DMT`
 4. Enter the following command to show your current state: `/opt/vc/bin/tvservice -s`
 5. Enter the following commands to dump more detailed information from your monitor: `/opt/vc/bin/tvservice -d edid.dat; /opt/vc/bin/edidparser edid.dat`
