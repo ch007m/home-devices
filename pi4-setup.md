@@ -77,5 +77,16 @@ state 0xa [HDMI CUSTOM RGB lim 16:9], 1920x1080 @ 60.00Hz, progressive
 
 Such setup corresponds to the `hdmi_group=2` and `hdmi_mode=82`
 
+### Which values are valid for my monitor?
+
+Your HDMI monitor may only support a limited set of formats. To find out which formats are supported, use the following method:
+
+1. Set the output format to VGA 60Hz (hdmi_group=1 and hdmi_mode=1) and boot up your Raspberry Pi
+2. Enter the following command to give a list of CEA-supported modes: `/opt/vc/bin/tvservice -m CEA`
+3. Enter the following command to give a list of DMT-supported modes: `/opt/vc/bin/tvservice -m DMT`
+4. Enter the following command to show your current state: `/opt/vc/bin/tvservice -s`
+5. Enter the following commands to dump more detailed information from your monitor: `/opt/vc/bin/tvservice -d edid.dat; /opt/vc/bin/edidparser edid.dat`
+   The edid.dat should also be provided when troubleshooting problems with the default HDMI mode.
+
 
 https://medium.com/@monofuel34089/running-your-raspberry-pi-4-at-4k60hz-78010a26e98d
