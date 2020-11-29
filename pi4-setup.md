@@ -139,7 +139,19 @@ How to guide:
 
 - If you want to check where your drive has been mounted, you can simply use the following command.
   
-  sudo cat /proc/mounts
+  sudo fdisk -l
+  Disk /dev/sda: 1.8 TiB, 2000365289472 bytes, 3906963456 sectors
+  Disk model: Elements 2620
+  Units: sectors of 1 * 512 = 512 bytes
+  Sector size (logical/physical): 512 bytes / 512 bytes
+  I/O size (minimum/optimal): 512 bytes / 512 bytes
+  Disklabel type: gpt
+  Disk identifier: D9C739C2-7CF1-4C5E-BDBC-7644928A2D8F
+  
+  Device      Start        End    Sectors  Size Type
+  /dev/sda1      40     409639     409600  200M EFI System
+  /dev/sda2  409640 3906961407 3906551768  1.8T Microsoft basic data
+  
 
 
   
