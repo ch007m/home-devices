@@ -83,7 +83,7 @@ How to Guide are available:
 - http://doc.ubuntu-fr.org/nfs
 - https://pimylifeup.com/raspberry-pi-nfs/
 
-Commands exexuted:
+Commands executed:
 ```
 sudo apt install nfs-kernel-server
 sudo mkdir -p /export/users
@@ -137,7 +137,7 @@ How to guide:
 - https://pimylifeup.com/raspberry-pi-mount-usb-drive/
 - https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
 
-- If you want to check where your drive has been mounted, you can simply use the following command.
+Use this result of the following command to identify the drive you want to mount: 
   ```
   sudo fdisk -l
   Disk /dev/sda: 1.8 TiB, 2000365289472 bytes, 3906963456 sectors
@@ -152,9 +152,55 @@ How to guide:
   /dev/sda1      40     409639     409600  200M EFI System
   /dev/sda2  409640 3906961407 3906551768  1.8T Microsoft basic data
   ```
+Next, retrieve the UUID of the disk `/dev/sda*`
+  ```
+  sudo blkid /dev/
+  /dev/sda2: LABEL="Elements" UUID="5FC3-A00B" TYPE="exfat" PARTLABEL="Elements" PARTUUID="a298b181-7514-4189-8b4c-75b1a8e46835"
+  ```
+**Remark**: Please make a note of the value for both the `UUID` and the `TYPE`
 
+**Trick**: To be able to use the NTFS format on your Raspberry Pi, you will need to install the NTFS-3g driver.
+  ```
+  sudo apt install ntfs-3g
+  ```
+**Trick**: To add support for the `exFAT` filesystem, we will need to install two packages.
+  ```
+  sudo apt install exfat-fuse
+  sudo apt install exfat-utils  
+  ```          
+To Mount the Drive to the Raspberry Pi, create a directory to mount it
+  ```
+  sudo mkdir -p /mnt/dabou-media
+  sudo chown -R pi:pi /mnt/dabou-media
 
+Next, we need to modify the `fstab` file to mount automatically the USB drive by running the command below
+  ```
+  sudo vi /etc/fstab
+  UUID=5FC3-A00B /mnt/dabou-media exfat defaults,auto,users,rw,nofail,noatime 0 0
+  ```
+Change the permission of the directory mounted
+```
+sudo find /mnt/dabou-media/ -type d -exec chmod 755 {} \;
+sudo find /mnt/dabou-media/ -type f -exec chmod 644 {} \;
+```
+If the drives does not mount on boot, add the following lines to the file `/etc/rc.local` before `exit 0` 
+```
+sudo vi /etc/rc.local
+sleep 20
+sudo mount -a
+```
+Next, edit the `/etc/exports` to mount `/mnt/dabout-media`
+```
+sudo vi /etc/exports
+/mnt/dabou-media *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)
   
+Reconfigure the files using `exportfs -ra`
+
+Restart the service
+```
+sudo systemctl restart nfs-kernel-server
+sudo systemctl status nfs-kernel-server
+```
 
 ### LibreElec
 
