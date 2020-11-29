@@ -64,7 +64,62 @@ EOF
 
 How to Guide are available:
 - https://www.raspberrypi.org/documentation/configuration/nfs.md
+- http://doc.ubuntu-fr.org/nfs
 - https://pimylifeup.com/raspberry-pi-nfs/
+
+Commands exexuted:
+```
+sudo apt install nfs-kernel-server
+sudo mkdir -p /export/users
+sudo chmod -R 777 /export
+
+# Check hard disk mounted and partitions
+sudo blkid
+/dev/sdb1: LABEL="Elements" UUID="F026D0A626D06F5A" TYPE="ntfs" PTTYPE="atari" PARTLABEL="Elements" PARTUUID="a298b181-7514-4189-8b4c-75b1a8e46835"
+
+sudo fdisk –l
+...
+Disk /dev/sda: 931.5 GiB, 1000170586112 bytes, 1953458176 sectors
+Disk model: My Passport 0830
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 6B429A65-72EA-4239-BD51-EE54AF2D882B
+
+Device      Start        End    Sectors   Size Type
+/dev/sda1      40     409639     409600   200M EFI System
+/dev/sda2  409640 1953195991 1952786352 931.2G Apple HFS/HFS+
+
+# Create a new folder to mount the external hard disk and mount it
+sudo mkdir /mnt/nfsshare
+sudo mkdir -p /mnt/nfsshare
+sudo chmod -R 777 /mnt/nfsshare
+sudo mount /dev/sda2 /mnt/nfsshare
+
+# Bind the volume mounted to the NFS shared
+sudo mount --bind /mnt/nfsshare /export/users
+
+# Save the volume mounted to allow to mount it after a reboot
+sudo vi /etc/fstab
+/home/users    /export/users   none    bind  0  0
+
+# Disable SVCGSSD daemon
+sudo vi /etc/default/nfs-kernel-server
+NEED_SVCGSSD="No"
+
+# To export our directories to a local network 192.168.1.0/24, we add the following two lines to /etc/exports
+
+/export       192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,async)
+/export/users 192.168.1.0/24(rw,nohide,insecure,no_subtree_check,async)
+```
+
+### Automount volume
+
+How to guide:
+
+- https://pimylifeup.com/raspberry-pi-mount-usb-drive/
+- https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
 
 ### LibreElec
 
