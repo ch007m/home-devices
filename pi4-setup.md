@@ -15,26 +15,56 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
 - pwd is `raspberry`
 
 - Add the missing DNS servers to the file `/etc/dhcpcd.conf`
-  `# Add DNS Servers
-   static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8`
-
+  ```
+  # Add DNS Servers
+  static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8
+  ```
+- Restart the service
+  ```
+  sudo service dhcpcd restart
+  ```
 - open the `raspi-config` by issuying this command `sudo raspi-config` within the terminal
 - Choose `5. interfacing option` and next `P3 VNC`
+  **Remark**: If you cannot update a package, change the raspbian mirror as described [here](https://raspberrypi.stackexchange.com/questions/103539/could-not-connect-to-raspbian-raspberrypi-org-in-raspberry-pi-3)
+  using a mirror: https://www.raspbian.org/RaspbianMirrors/
+  ```
+  sudo vi /etc/apt/sources.list
+  # Using a raspbian mirror: https://www.raspbian.org/RaspbianMirrors/
+  deb http://mirror.ox.ac.uk/sites/archive.raspbian.org/archive/raspbian/ buster main contrib non-free rpi
+  
+  # Official raspberry repo
+  # deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+  ```  
+
 - Define an IP fix address: https://pimylifeup.com/raspberry-pi-static-ip-address/
 
 ### Setup WIFI
 
+See [doc](https://raspberrytips.com/raspberry-pi-wifi-setup/)
+
+- To configure it manually, create the following wpa_applicant file
 ```
-cat <<EOF > wpa_supplicant.conf
-country=BE
+cat <<EOF > /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=BE
+
 network={
-    ssid="WiFi-2.4-0290_2GEXT"
-    psk="w29xnbrcp2j4s"
+	ssid="WiFi-2.4-0290_2GEXT"
+	psk="xxxxx"
     key_mgmt=WPA-PSK
 }
 EOF
 ```
+- And reboot the pi box `sudo reboot` and verify that the wifi network is working
+  ```
+  ifconfig wlan0
+  ```
+### NFS Server
+
+How to Guide are available:
+- https://www.raspberrypi.org/documentation/configuration/nfs.md
+- https://pimylifeup.com/raspberry-pi-nfs/
 
 ### LibreElec
 
