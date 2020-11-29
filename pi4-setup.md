@@ -23,7 +23,23 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
   ```
   sudo service dhcpcd restart
   ```
-- open the `raspi-config` by issuying this command `sudo raspi-config` within the terminal
+- Import your public key to avoid to have to pass the password when you ssh
+  ```
+  ssh-copy-id -i ~/.ssh/id_rsa.pub pi@raspberrypi.local
+  /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/Users/cmoullia/.ssh/id_rsa.pub"
+  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+  pi@raspberrypi.local's password:
+  
+  Number of key(s) added:        1
+  
+  Now try logging into the machine, with:   "ssh 'pi@raspberrypi.local'"
+  and check to make sure that only the key(s) you wanted were added.
+  ```  
+
+### Enable VNC (for desktop installation only)
+
+- open the `raspi-config` by issuing this command `sudo raspi-config` within the terminal
 - Choose `5. interfacing option` and next `P3 VNC`
   **Remark**: If you cannot update a package, change the raspbian mirror as described [here](https://raspberrypi.stackexchange.com/questions/103539/could-not-connect-to-raspbian-raspberrypi-org-in-raspberry-pi-3)
   using a mirror: https://www.raspbian.org/RaspbianMirrors/
@@ -120,6 +136,13 @@ How to guide:
 
 - https://pimylifeup.com/raspberry-pi-mount-usb-drive/
 - https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
+
+- If you want to check where your drive has been mounted, you can simply use the following command.
+  
+  sudo cat /proc/mounts
+
+
+  
 
 ### LibreElec
 
