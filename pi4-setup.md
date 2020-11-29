@@ -138,7 +138,7 @@ How to guide:
 - https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
 
 - If you want to check where your drive has been mounted, you can simply use the following command.
-  
+  ```
   sudo fdisk -l
   Disk /dev/sda: 1.8 TiB, 2000365289472 bytes, 3906963456 sectors
   Disk model: Elements 2620
@@ -151,7 +151,7 @@ How to guide:
   Device      Start        End    Sectors  Size Type
   /dev/sda1      40     409639     409600  200M EFI System
   /dev/sda2  409640 3906961407 3906551768  1.8T Microsoft basic data
-  
+  ```
 
 
   
