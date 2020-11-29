@@ -171,17 +171,18 @@ Next, retrieve the UUID of the disk `/dev/sda*`
 To Mount the Drive to the Raspberry Pi, create a directory to mount it
   ```
   sudo mkdir -p /mnt/dabou-media
+  sudo chown -R pi:pi /mnt/
   sudo chown -R pi:pi /mnt/dabou-media
 
 Next, we need to modify the `fstab` file to mount automatically the USB drive by running the command below
   ```
   sudo vi /etc/fstab
-  UUID=5FC3-A00B /mnt/dabou-media exfat defaults,auto,users,rw,nofail,noatime 0 0
+  UUID=5FC3-A00B /mnt/dabou-media exfat defaults,auto,user,rw,nofail,noatime 0 0
   ```
 Change the permission of the directory mounted
 ```
-sudo find /mnt/dabou-media/ -type d -exec chmod 755 {} \;
-sudo find /mnt/dabou-media/ -type f -exec chmod 644 {} \;
+sudo find /mnt/dabou-media/ -type d -exec chmod 777 {} \;
+sudo find /mnt/dabou-media/ -type f -exec chmod 666 {} \;
 ```
 If the drives does not mount on boot, add the following lines to the file `/etc/rc.local` before `exit 0` 
 ```
@@ -194,7 +195,7 @@ Next, edit the `/etc/exports` to mount `/mnt/dabout-media`
 sudo vi /etc/exports
 /mnt/dabou-media *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)
   
-Reconfigure the files using `exportfs -ra`
+Reconfigure the files using `sudo exportfs -ra`
 
 Restart the service
 ```
