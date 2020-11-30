@@ -1,14 +1,13 @@
 Table of Contents
 =================
 
-   * [How to install Pi OS](#how-to-install-pi-os)
-   * [Enable VNC (for desktop installation only)](#enable-vnc-for-desktop-installation-only)
-   * [Setup WIFI](#setup-wifi)
-   * [NFS Server and mount disk](#nfs-server-and-mount-disk)
-   * [Automount volume](#automount-volume)
-   * [LibreElec](#libreelec)
-   * [Check TV setup](#check-tv-setup)
-   * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
+  * [How to install Pi OS](#how-to-install-pi-os)
+  * [Setup WIFI](#setup-wifi)
+  * [Mount a disk and enable NFS service](#mount-a-disk-and-enable-nfs-service)
+  * [Automount volume](#automount-volume)
+  * [LibreElec](#libreelec)
+  * [Check TV setup](#check-tv-setup)
+  * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
 
 ### How to install Pi OS
 
@@ -27,23 +26,16 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
   `ssh pi@raspberrypi.local`
 - pwd is `raspberry`
 
-- Add the missing DNS servers to the file `/etc/dhcpcd.conf` (optional)
-  ```
-  # Add DNS Servers
-  static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8
-  ```
-- Restart the service
-  ```
-  sudo service dhcpcd restart
-  ```
 - Import your public key to avoid to have to pass the password when you ssh
   `ssh-copy-id -i ~/.ssh/id_rsa.pub pi@raspberrypi.local` 
 
-### Enable VNC (for desktop installation only)
+- Update first your OS installed if not yet already done
+  ```
+  sudo apt-get update
+  sudo apt-get upgrade
+  ```
 
-- open the `raspi-config` by issuing this command `sudo raspi-config` within the terminal
-- Choose `5. interfacing option` and next `P3 VNC`
-  **Remark**: If you cannot update a package, change the raspbian mirror as described [here](https://raspberrypi.stackexchange.com/questions/103539/could-not-connect-to-raspbian-raspberrypi-org-in-raspberry-pi-3)
+  **Remark**: If you cannot update a package due to such an error `  Cannot initiate the connection to raspbian.raspberrypi.org:80 (2a00:1098:0:80:1000:75:0:3). - connect (101: Network is unreachable) Could not connect to raspbian.raspberrypi.org:80 (93.93.128.193), connection timed out` , change the raspbian mirror as described [here](https://raspberrypi.stackexchange.com/questions/103539/could-not-connect-to-raspbian-raspberrypi-org-in-raspberry-pi-3)
   using a mirror: https://www.raspbian.org/RaspbianMirrors/
   ```
   sudo vi /etc/apt/sources.list
@@ -52,9 +44,18 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
   
   # Official raspberry repo
   # deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
-  ```  
-
-- Define an IP fix address: https://pimylifeup.com/raspberry-pi-static-ip-address/
+  ``` 
+- Add the missing DNS servers to the file `/etc/dhcpcd.conf` (optional)
+  ```
+  # Add DNS Servers
+  static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8
+  ```
+- Restart the service
+  ```
+  sudo service dhcpcd restart
+  ```   
+  
+- To define an IP fix address, follow the instructions defined [here](https://pimylifeup.com/raspberry-pi-static-ip-address/)
 
 ### Setup WIFI
 
@@ -81,19 +82,26 @@ EOF'
   sudo ifconfig wlan0 up
   sudo reboot
   ```
-### NFS Server and mount disk
+### Mount a disk and enable NFS service
 
 How to Guide are available:
 - https://www.raspberrypi.org/documentation/configuration/nfs.md
 - http://doc.ubuntu-fr.org/nfs
 - https://pimylifeup.com/raspberry-pi-nfs/
 
-Commands executed:
+- Next, install the NFS server
 ```
 sudo apt install nfs-kernel-server
+```
+
+- Now that we have installed the NFS server-side software, we can now proceed to set up an NFS share on the Raspberry Pi.
+- TODO
+```
 sudo mkdir -p /export/users
 sudo chmod -R 777 /export
+```
 
+```
 # Check hard disk mounted and partitions
 sudo blkid
 /dev/sdb1: LABEL="Elements" UUID="F026D0A626D06F5A" TYPE="ntfs" PTTYPE="atari" PARTLABEL="Elements" PARTUUID="a298b181-7514-4189-8b4c-75b1a8e46835"
