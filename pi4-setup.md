@@ -1,4 +1,16 @@
-## How to install Pi OS
+Table of Contents
+=================
+
+   * [How to install Pi OS](#how-to-install-pi-os)
+   * [Enable VNC (for desktop installation only)](#enable-vnc-for-desktop-installation-only)
+   * [Setup WIFI](#setup-wifi)
+   * [NFS Server and mount disk](#nfs-server-and-mount-disk)
+   * [Automount volume](#automount-volume)
+   * [LibreElec](#libreelec)
+   * [Check TV setup](#check-tv-setup)
+   * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
+
+### How to install Pi OS
 
 - Launch the application `Raspberry Pi Imager` on your desktop 
   - Select `Raspberry PI No desktop image`
@@ -76,7 +88,7 @@ EOF
   ```
   ifconfig wlan0
   ```
-### NFS Server
+### NFS Server and mount disk
 
 How to Guide are available:
 - https://www.raspberrypi.org/documentation/configuration/nfs.md
