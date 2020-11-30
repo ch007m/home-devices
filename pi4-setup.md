@@ -13,20 +13,21 @@ Table of Contents
 ### How to install Pi OS
 
 - Launch the application `Raspberry Pi Imager` on your desktop 
-  - Select `Raspberry PI No desktop image`
+  - Select the downloaded file of the `Raspberry PI Buster image` (e.g. 2020-08-20-raspios-buster-armhf.zip) usign the option `Custom`
+  - As an alternative, you can select it from the list of the image available but then an internet access is needed
   - Pickup the SD card
   - Write
 
 See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-and-Keyb/
 
 - Open a terminal and create the following file under the Volume mounted - boot
-  `touch SSH`
+  `touch /Volumes/boot/SSH`
 - Plug your Pi4 to a network cable and power it up
 - ssh to the pi machine
   `ssh pi@raspberrypi.local`
 - pwd is `raspberry`
 
-- Add the missing DNS servers to the file `/etc/dhcpcd.conf`
+- Add the missing DNS servers to the file `/etc/dhcpcd.conf` (optional)
   ```
   # Add DNS Servers
   static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8
@@ -36,18 +37,7 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
   sudo service dhcpcd restart
   ```
 - Import your public key to avoid to have to pass the password when you ssh
-  ```
-  ssh-copy-id -i ~/.ssh/id_rsa.pub pi@raspberrypi.local
-  /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/Users/cmoullia/.ssh/id_rsa.pub"
-  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
-  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-  pi@raspberrypi.local's password:
-  
-  Number of key(s) added:        1
-  
-  Now try logging into the machine, with:   "ssh 'pi@raspberrypi.local'"
-  and check to make sure that only the key(s) you wanted were added.
-  ```  
+  `ssh-copy-id -i ~/.ssh/id_rsa.pub pi@raspberrypi.local` 
 
 ### Enable VNC (for desktop installation only)
 
@@ -72,21 +62,24 @@ See [doc](https://raspberrytips.com/raspberry-pi-wifi-setup/)
 
 - To configure it manually, create the following wpa_applicant file
 ```
-cat <<EOF > /etc/wpa_supplicant/wpa_supplicant.conf
+sudo bash -c 'cat <<EOF > /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=BE
 
 network={
 	ssid="WiFi-2.4-0290_2GEXT"
-	psk="xxxxx"
+	psk="xxxxxxx"
     key_mgmt=WPA-PSK
 }
-EOF
+EOF'
 ```
-- And reboot the pi box `sudo reboot` and verify that the wifi network is working
+- Next start the `wlan0` interface and reboot the pi box `sudo reboot`
   ```
-  ifconfig wlan0
+  sudo rfkill unblock wifi; sudo rfkill unblock all
+  sudo ifconfig wlan0 down
+  sudo ifconfig wlan0 up
+  sudo reboot
   ```
 ### NFS Server and mount disk
 
