@@ -106,13 +106,13 @@ Install first the NFS server
 
 - Format the USB Hard drive as `ext4` using this command `sudo mkfs.ext4 /dev/sda`
 - Now that we have installed the NFS server-side software, we can proceed to set up an NFS share on the Raspberry Pi.
-- To Mount the USB Drive to the Raspberry Pi, create a directory, change the owner permissions: 
+- To mount the USB Drive to the Raspberry Pi, create a directory & change the owner permissions: 
   ```
   sudo mkdir -p /mnt/dabou-media
   sudo chown -R pi:pi /mnt/
   sudo chown -R pi:pi /mnt/dabou-media
   ```
-- Retrieve now the UUID of the disk `/dev/sda*` mounted in order to configure `fstab`
+- Retrieve now the `UUID` and the `type` of the disk `/dev/sda*` mounted in order to configure `fstab`
   ```
   sudo blkid /dev/sda*
   /dev/sda2: LABEL="Elements" UUID="18038afa-7403-44d4-abb5-f1d530e6060" TYPE="ext4"
