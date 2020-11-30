@@ -6,7 +6,7 @@ Table of Contents
    * [Mount a disk and enable NFS service](#mount-a-disk-and-enable-nfs-service)
    * [LibreElec](#libreelec)
    * [Check TV setup](#check-tv-setup)
-   * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
+     * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
 
 ### How to install Pi OS
 
@@ -184,7 +184,7 @@ state 0xa [HDMI CUSTOM RGB lim 16:9], 1920x1080 @ 60.00Hz, progressive
 
 Such setup corresponds to the `hdmi_group=2` and `hdmi_mode=82`
 
-### Which values are valid for my monitor?
+#### Which values are valid for my monitor?
 
 Your HDMI monitor may only support a limited set of formats. To find out which formats are supported, use the following method:
 
