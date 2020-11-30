@@ -1,13 +1,12 @@
 Table of Contents
 =================
 
-  * [How to install Pi OS](#how-to-install-pi-os)
-  * [Setup WIFI](#setup-wifi)
-  * [Mount a disk and enable NFS service](#mount-a-disk-and-enable-nfs-service)
-  * [Automount volume](#automount-volume)
-  * [LibreElec](#libreelec)
-  * [Check TV setup](#check-tv-setup)
-  * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
+   * [How to install Pi OS](#how-to-install-pi-os)
+   * [Setup WIFI](#setup-wifi)
+   * [Mount a disk and enable NFS service](#mount-a-disk-and-enable-nfs-service)
+   * [LibreElec](#libreelec)
+   * [Check TV setup](#check-tv-setup)
+   * [Which values are valid for my monitor?](#which-values-are-valid-for-my-monitor)
 
 ### How to install Pi OS
 
@@ -84,93 +83,16 @@ EOF'
   ```
 ### Mount a disk and enable NFS service
 
-How to Guide are available:
+How to Guides to configure NFS or mount a disk are available:
 - https://www.raspberrypi.org/documentation/configuration/nfs.md
-- http://doc.ubuntu-fr.org/nfs
 - https://pimylifeup.com/raspberry-pi-nfs/
-
-- Next, install the NFS server
-```
-sudo apt install nfs-kernel-server
-```
-
-- Now that we have installed the NFS server-side software, we can now proceed to set up an NFS share on the Raspberry Pi.
-- TODO
-```
-sudo mkdir -p /export/users
-sudo chmod -R 777 /export
-```
-
-```
-# Check hard disk mounted and partitions
-sudo blkid
-/dev/sdb1: LABEL="Elements" UUID="F026D0A626D06F5A" TYPE="ntfs" PTTYPE="atari" PARTLABEL="Elements" PARTUUID="a298b181-7514-4189-8b4c-75b1a8e46835"
-
-sudo fdisk –l
-...
-Disk /dev/sda: 931.5 GiB, 1000170586112 bytes, 1953458176 sectors
-Disk model: My Passport 0830
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: gpt
-Disk identifier: 6B429A65-72EA-4239-BD51-EE54AF2D882B
-
-Device      Start        End    Sectors   Size Type
-/dev/sda1      40     409639     409600   200M EFI System
-/dev/sda2  409640 1953195991 1952786352 931.2G Apple HFS/HFS+
-
-# Create a new folder to mount the external hard disk and mount it
-sudo mkdir /mnt/nfsshare
-sudo mkdir -p /mnt/nfsshare
-sudo chmod -R 777 /mnt/nfsshare
-sudo mount /dev/sda2 /mnt/nfsshare
-
-# Bind the volume mounted to the NFS shared
-sudo mount --bind /mnt/nfsshare /export/users
-
-# Save the volume mounted to allow to mount it after a reboot
-sudo vi /etc/fstab
-/home/users    /export/users   none    bind  0  0
-
-# Disable SVCGSSD daemon
-sudo vi /etc/default/nfs-kernel-server
-NEED_SVCGSSD="No"
-
-# To export our directories to a local network 192.168.1.0/24, we add the following two lines to /etc/exports
-
-/export       192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,async)
-/export/users 192.168.1.0/24(rw,nohide,insecure,no_subtree_check,async)
-```
-
-### Automount volume
-
-How to guide:
-
 - https://pimylifeup.com/raspberry-pi-mount-usb-drive/
 - https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
 
-Use this result of the following command to identify the drive you want to mount: 
+- Install first the NFS server
   ```
-  sudo fdisk -l
-  Disk /dev/sda: 1.8 TiB, 2000365289472 bytes, 3906963456 sectors
-  Disk model: Elements 2620
-  Units: sectors of 1 * 512 = 512 bytes
-  Sector size (logical/physical): 512 bytes / 512 bytes
-  I/O size (minimum/optimal): 512 bytes / 512 bytes
-  Disklabel type: gpt
-  Disk identifier: D9C739C2-7CF1-4C5E-BDBC-7644928A2D8F
-  
-  Device      Start        End    Sectors  Size Type
-  /dev/sda1      40     409639     409600  200M EFI System
-  /dev/sda2  409640 3906961407 3906551768  1.8T Microsoft basic data
+  sudo apt install nfs-kernel-server
   ```
-Next, retrieve the UUID of the disk `/dev/sda*`
-  ```
-  sudo blkid /dev/
-  /dev/sda2: LABEL="Elements" UUID="5FC3-A00B" TYPE="exfat" PARTLABEL="Elements" PARTUUID="a298b181-7514-4189-8b4c-75b1a8e46835"
-  ```
-**Remark**: Please make a note of the value for both the `UUID` and the `TYPE`
 
 **Trick**: To be able to use the NTFS format on your Raspberry Pi, you will need to install the NTFS-3g driver.
   ```
@@ -178,44 +100,48 @@ Next, retrieve the UUID of the disk `/dev/sda*`
   ```
 **Trick**: To add support for the `exFAT` filesystem, we will need to install two packages.
   ```
-  sudo apt install exfat-fuse
-  sudo apt install exfat-utils  
-  ```          
-To Mount the Drive to the Raspberry Pi, create a directory to mount it
+  sudo apt install exfat-fuse -y
+  sudo apt install exfat-utils -y
+  ```  
+
+- Format the USB Hard drive as `ext4` using this command `sudo mkfs.ext4 /dev/sda`
+- Now that we have installed the NFS server-side software, we can proceed to set up an NFS share on the Raspberry Pi.
+- To Mount the USB Drive to the Raspberry Pi, create a directory, change the owner permissions: 
   ```
   sudo mkdir -p /mnt/dabou-media
   sudo chown -R pi:pi /mnt/
   sudo chown -R pi:pi /mnt/dabou-media
+  ```
+- Retrieve now the UUID of the disk `/dev/sda*` mounted in order to configure `fstab`
+  ```
+  sudo blkid /dev/sda*
+  /dev/sda2: LABEL="Elements" UUID="18038afa-7403-44d4-abb5-f1d530e6060" TYPE="ext4"
+  ```
+**Remark**: Please make a note of the value for both the `UUID` and the `TYPE`
 
-Next, we need to modify the `fstab` file to mount automatically the USB drive by running the command below
+- Modify the `fstab` file to [mount automatically](https://www.shellhacks.com/raspberry-pi-mount-usb-drive-automatically/) the USB drive by running the command below
   ```
   sudo vi /etc/fstab
-  UUID=5FC3-A00B /mnt/dabou-media exfat defaults,auto,user,rw,nofail,noatime 0 0
+  # External HD USB disk
+  UUID=18038afa-7403-44d4-abb5-f1d530e6060 /mnt/dabou-media ext4 defaults,auto,users,rw,nofail 0 0
   ```
-Change the permission of the directory mounted
-```
-sudo find /mnt/dabou-media/ -type d -exec chmod 777 {} \;
-sudo find /mnt/dabou-media/ -type f -exec chmod 666 {} \;
-```
-If the drives does not mount on boot, add the following lines to the file `/etc/rc.local` before `exit 0` 
-```
-sudo vi /etc/rc.local
-sleep 20
-sudo mount -a
-```
-Next, edit the `/etc/exports` to mount `/mnt/dabout-media`
-```
-sudo vi /etc/exports
-/mnt/dabou-media *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)
+- Change the permissions of the directory mounted
+  ```
+  sudo find /mnt/dabou-media/ -type d -exec chmod 777 {} \;
+  sudo find /mnt/dabou-media/ -type f -exec chmod 666 {} \;
+  ```
+- Edit the `/etc/exports` to mount `/mnt/dabout-media`
+  ```
+  sudo vi /etc/exports
+  /mnt/dabou-media *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)
+  ```
+- Reconfigure the files using `sudo exportfs -ra`
+- Restart the service
+  ```
+  sudo systemctl restart nfs-kernel-server
+  sudo systemctl status nfs-kernel-server
+  ```
   
-Reconfigure the files using `sudo exportfs -ra`
-
-Restart the service
-```
-sudo systemctl restart nfs-kernel-server
-sudo systemctl status nfs-kernel-server
-```
-
 ### LibreElec
 
 - Install the LibreElec image for Kodi `LibreELEC-RPi4.arm-9.2.6.img.gz` using BalenaEtcher or Raspi PI Manager
