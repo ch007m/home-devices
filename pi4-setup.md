@@ -60,7 +60,7 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
 
 See [How To guide for more information](https://raspberrytips.com/raspberry-pi-wifi-setup/)
 
-- To configure it manually, create the following wpa_applicant file
+- To configure it manually, create the following wpa_applicant file and change the country ISO code, SSID and psk
 ```
 sudo bash -c 'cat <<EOF > /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -68,7 +68,7 @@ update_config=1
 country=BE
 
 network={
-	ssid="WiFi-2.4-0290_2GEXT"
+	ssid="yyyyyyyy"
 	psk="xxxxxxx"
     key_mgmt=WPA-PSK
 }
