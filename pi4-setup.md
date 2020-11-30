@@ -74,7 +74,7 @@ network={
 }
 EOF'
 ```
-- Next start the `wlan0` interface and reboot the pi box `sudo reboot`
+- Next start the `wlan0` interface and reboot the pi box
   ```
   sudo rfkill unblock wifi; sudo rfkill unblock all
   sudo ifconfig wlan0 down
@@ -89,7 +89,7 @@ How to Guides to configure NFS or mount a disk are available:
 - https://pimylifeup.com/raspberry-pi-mount-usb-drive/
 - https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-mount-an-external-hard-drive-on-the-raspberry-pi-raspian
 
-- Install first the NFS server
+Install first the NFS server
   ```
   sudo apt install nfs-kernel-server
   ```
