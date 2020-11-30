@@ -127,8 +127,8 @@ How to Guides to configure NFS or mount a disk are available:
   ```
 - Change the permissions of the directory mounted
   ```
-  sudo find /mnt/dabou-media/ -type d -exec chmod 777 {} \;
-  sudo find /mnt/dabou-media/ -type f -exec chmod 666 {} \;
+  sudo find /mnt/dabou-media/ -type d -exec chmod 755 {} \;
+  sudo find /mnt/dabou-media/ -type f -exec chmod 644 {} \;
   ```
 - Edit the `/etc/exports` to mount `/mnt/dabout-media`
   ```
@@ -141,7 +141,8 @@ How to Guides to configure NFS or mount a disk are available:
   sudo systemctl restart nfs-kernel-server
   sudo systemctl status nfs-kernel-server
   ```
-  
+- If the speed transfer is very slow, then execute the following instructions: https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=245931&sid=2d40fbd4bef6868d3911c98705e53f0e
+
 ### LibreElec
 
 - Install the LibreElec image for Kodi `LibreELEC-RPi4.arm-9.2.6.img.gz` using BalenaEtcher or Raspi PI Manager
