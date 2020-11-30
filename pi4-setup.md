@@ -58,7 +58,7 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
 
 ### Setup WIFI
 
-See [doc](https://raspberrytips.com/raspberry-pi-wifi-setup/)
+See [How To guide for more information](https://raspberrytips.com/raspberry-pi-wifi-setup/)
 
 - To configure it manually, create the following wpa_applicant file
 ```
