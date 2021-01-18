@@ -93,6 +93,8 @@ Import your public key to avoid having to pass the password when you ssh
 - Launch Network Manager Text User Interface
   ```bash
   nmtui
+  ...
+  SSID: WiFi-2.4-0290_2GEXT
   ```
 - Search and activate your SSID (wireless network)
 - Check you actually have an IP address
@@ -114,7 +116,7 @@ Import your public key to avoid having to pass the password when you ssh
           3C:37:86:FA:47:F2  WiFi-5.0-0290_5GEXT  Infra  48    270 Mbit/s  54      ▂▄__  WPA2
           F8:08:4F:16:02:97  WiFi-5.0-0290        Infra  48    540 Mbit/s  19      ▂___  WPA2
   ```
-- Now, let's connect to WiFi (note, one must be root or sudo access)
+- You can also configure the Wifi device using this command
   ```bash
   nmcli device wifi connect <SSID|BSSID> password <password>  
   ```
