@@ -8,3 +8,6 @@
 - Install [Libreelec](libreelec.md) as alternative to OSMC (kodi distribution)
 - Setup and configure Volumio [configuration & plugins](volumio.md)
 - Rip DVD using [handbrake](rip-dvd.md)
+
+- RockPro64
+  - [Setup](rockpro64-setup.md)
