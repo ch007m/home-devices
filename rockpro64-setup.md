@@ -85,11 +85,11 @@ Import your public key to avoid having to pass the password when you ssh
   vncserver :1
   ```
   **Remark**: Add an alias to your `.bash_aliases` file to start the vnc server using the command `alias start-vnc='runuser -l vnc -c "vncserver :1"'`.
-  If you also use Zsh, then source also the `.bash_aliases` file like this `source .bash_aliases`
+  If you also use `Zsh`, then source also the `.bash_aliases` file like this `source .bash_aliases` within the `.zhrc` file.
   
 ### Setup Wifi
 
-- As the card does not embed a Wifi adapter, then an external wifi module is needed and can be plugged using the USB port as described [here]( https://developer.ridgerun.com/wiki/index.php?title=Getting_Started_Guide_for_ROCKPro64)
+- As the card does not embed a Wifi adapter, then an external Wifi module is needed and can be plugged using the USB port as described [here]( https://developer.ridgerun.com/wiki/index.php?title=Getting_Started_Guide_for_ROCKPro64)
 - Launch Network Manager Text User Interface
   ```bash
   nmtui
@@ -144,7 +144,7 @@ Disk identifier: C63544E0-2A68-4733-87D3-AEE21A5494CB
 ```
 - Get the UUID for the drive that you want to mount
 ```bash
-sudo blkid
+blkid
 ...
 /dev/sda2: UUID="44788b34-78e3-3cf9-a98d-07cbb18f8fee" LABEL="Dabou2" TYPE="hfsplus" PARTUUID="eac98ec4-4f16-4879-ba61-aa472304c5a3"
 ```
@@ -158,6 +158,12 @@ fdisk /dev/nvme0n1
 mkfs.ext4 /dev/nvme0n1
 ```
 **Remark**: Next, you should be able to get the UUID s edit the `/etc/fstab` file
+- Mount the volumes
+  ```bash
+  mkdir -p /media/dabou
+  mkdir -p /media/dabou2
+  mount -a
+  ```
 
 ### Ip address
 
