@@ -1,0 +1,15 @@
+$script = <<SCRIPT
+apt-get install pmount
+SCRIPT
+Vagrant.configure("2") do |config|
+  config.vm.box = 'bento/ubuntu-20.04'
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ['modifyvm', :id, '--usb', 'on']
+    vb.customize ['usbfilter', 'add', '0',
+      '--target', :id,
+      '--name', 'DietPi',
+      '--vendorid', '0x14cd',
+      '--productid', '0x1212']
+  config.vm.provision "shell", inline: $script
+  end
+end

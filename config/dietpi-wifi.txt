@@ -1,0 +1,3 @@
+aWIFI_SSID[0]='WiFi-2.4-0290_2GEXT'
+aWIFI_KEY[0]='w29xnbrcp2j4s'
+aWIFI_KEYMGR[0]='WPA-PSK'

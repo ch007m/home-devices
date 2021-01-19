@@ -16,7 +16,10 @@ using a LinuxOS where the USB card has been mounted
 ssh pi@raspberrypi.local "sudo mkdir /mnt/usb"
 ssh pi@raspberrypi.local "sudo mount /dev/sda1 /mnt/usb"
 ssh pi@raspberrypi.local "sudo chmod 666 /mnt/usb/boot/dietpi.txt"
+ssh pi@raspberrypi.local "sudo touch /mnt/usb/boot/dietpi-wifi.txt"
+ssh pi@raspberrypi.local "sudo chmod 666 /mnt/usb/boot/dietpi-wifi.txt"
 sshpass -p "raspberry" scp config/dietpi.txt pi@raspberrypi.local:/mnt/usb/boot
+sshpass -p "raspberry" scp config/dietpi-wifi.txt pi@raspberrypi.local:/mnt/usb/boot
 ```
 
 ### Boot the OS

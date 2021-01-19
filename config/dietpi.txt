@@ -11,7 +11,7 @@ AUTO_SETUP_ACCEPT_LICENSE=1
 
 ##### Language/Regional Options #####
 # Locale: eg: "en_GB.UTF-8" / "de_DE.UTF-8" | One entry and UTF-8 ONLY!
-AUTO_SETUP_LOCALE=fr_BE.UTF-8
+AUTO_SETUP_LOCALE=en_US.UTF-8
 
 # Keyboard Layout eg: "gb" / "us" / "de" / "fr"
 AUTO_SETUP_KEYBOARD_LAYOUT=gb
@@ -24,10 +24,7 @@ AUTO_SETUP_TIMEZONE=Europe/Brussels
 # - If both Ethernet and WiFi are enabled, WiFi will take priority and Ethernet will be disabled.
 # - If using WiFi, please edit dietpi-wifi.txt to pre-enter credentials.
 AUTO_SETUP_NET_ETHERNET_ENABLED=1
-
 AUTO_SETUP_NET_WIFI_ENABLED=1
-AUTO_SETUP_NET_WIFI_SSID=WiFi-2.4-0290_2GEXT
-AUTO_SETUP_NET_WIFI_KEY=w29xnbrcp2j4s
 
 # Force ethernet speeds: 0=automatic speed | 10 = 10Mbit | 100 = 100Mbit etc
 # - This is mainly aimed at Pine A64 which may have an HW issue that causes unstable 1Gbit link.
@@ -41,7 +38,7 @@ AUTO_SETUP_NET_USESTATIC=0
 AUTO_SETUP_NET_STATIC_IP=192.168.1.200
 AUTO_SETUP_NET_STATIC_MASK=255.255.255.0
 AUTO_SETUP_NET_STATIC_GATEWAY=192.168.1.1
-AUTO_SETUP_NET_STATIC_DNS=9.9.9.9
+AUTO_SETUP_NET_STATIC_DNS=8.8.8.8
 
 # Hostname
 AUTO_SETUP_NET_HOSTNAME=DietPi
