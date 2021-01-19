@@ -16,12 +16,12 @@ See : https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-an
 
 - Open a terminal and create the following file under the Volume mounted - boot
   `touch /Volumes/boot/SSH`
-- Plug your Pi4 to a network cable and power it up
+- Plug your Pi4 to a network and power it up
 - ssh to the pi machine
   `ssh pi@raspberrypi.local`
 - pwd is `raspberry`
 
-- Import your public key to avoid to have to pass the password when you ssh
+- Import your public key to avoid having to pass the password when you ssh
   `ssh-copy-id -i ~/.ssh/id_rsa.pub pi@raspberrypi.local` 
 
 - Update first your OS installed if not yet already done

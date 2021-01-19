@@ -41,6 +41,8 @@ This will allow you to access the board via a hostname instead of an IP address.
 sudo apt update
 sudo apt install avahi-daemon
 ```
+**Note**: Avahi config files are hosted under `/etc/avahi`. This is where you can customize the hostname
+
 - Now, from your computer, you may access the board using:
 ```bash
 ssh <username>@rockpro64.local

@@ -9,5 +9,8 @@
 - Setup and configure Volumio [configuration & plugins](volumio.md)
 - Rip DVD using [handbrake](rip-dvd.md)
 
+- DietPi
+  - [Setup](dietpi-setup.md)
+
 - RockPro64
   - [Setup](rockpro64-setup.md)
