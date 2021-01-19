@@ -45,9 +45,15 @@ vb.customize ['usbfilter', 'add', '0',
   ```bash
   vagrant ssh -c "sudo fdisk -l"
   ```
-- And mount it. This will mount the drive in `/media/sdb1`
+- And mount it.
   ```bash
   vagrant ssh -c "pmount /dev/sdb1"
+  ```
+- files will be available here:
+  ```bash
+  vagrant ssh -c "ls -la /media/sdb1/boot"
+  vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi.txt"
+  vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi-wifi.txt"
   ```
 - To unmount, execute this command `pumount /dev/sdb1`
 - To copy the files, install the following plugin
