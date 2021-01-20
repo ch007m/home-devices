@@ -37,7 +37,7 @@ We are now ready to bootstrap the OS.
   
 ### Mount a disk
 
-See [instructions](rockpro64-setup.md#mount-a-disk) created for Armbian
+See [instructions](mount-a-disk.md)
 
 
 
