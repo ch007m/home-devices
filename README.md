@@ -8,7 +8,7 @@
 - DietPi
   - [Setup](dietpi-setup.md)
 
-- RockPro64
+- RockPro64less /etc/passwd
   - [Setup](rockpro64-setup.md)
   
 # Media Center
