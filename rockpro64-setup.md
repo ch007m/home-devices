@@ -171,6 +171,13 @@ mkfs.ext4 /dev/nvme0n1
   mkdir -p /media/dabou2
   mount -a
   ```
+- All in one step
+  ```bash
+  UUID=$(blkid | sed -n '/nvme0n1/s/.*UUID=\"\([^\"]*\)\".*/\1/p')
+  echo "UUID="${UUID}" /media/dabou ext4 defaults 0 0" >> /etc/fstab
+  mkdir -p /media/dabou
+  mount -a
+  ```
 
 ### Ip address
 
