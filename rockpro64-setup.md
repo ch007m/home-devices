@@ -11,6 +11,11 @@ Table of Contents
   * [Ip address](#ip-address)
   * [Add missing DNS server](#add-missing-dns-server)
 
+The list of the OS available for Rockpro64 are available [here](https://wiki.pine64.org/index.php/ROCKPro64#Software_and_OS_Image_Builds). For the NAS project, we have decided o investigate 2 of them: 
+- Armbian OS
+- DietPi
+
+**Important**: As the latest releases of Armbian OS are based on Ubuntu and not Debian anymore, than we cannot use it to install OMV :-(
 
 ### How to install Armbian OS
 
