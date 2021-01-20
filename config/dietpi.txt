@@ -31,7 +31,7 @@ AUTO_SETUP_NET_WIFI_ENABLED=0
 AUTO_SETUP_NET_ETH_FORCE_SPEED=0
 
 # WiFi country code: 2 uppercase character value (e.g. GB US DE JP): https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-AUTO_SETUP_NET_WIFI_COUNTRY_CODE=BE
+AUTO_SETUP_NET_WIFI_COUNTRY_CODE=FR
 
 # Enter your Static Network details below, if applicable.
 AUTO_SETUP_NET_USESTATIC=1
