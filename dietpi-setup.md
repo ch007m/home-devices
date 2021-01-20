@@ -34,6 +34,12 @@ We are now ready to bootstrap the OS.
   ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.200
   ssh root@dietpi.local
   ```
+  
+### Mount a disk
+
+See [instructions](rockpro64-setup.md#mount-a-disk) created for Armbian
+
+
 
 
 
