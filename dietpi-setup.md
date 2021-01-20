@@ -28,8 +28,8 @@ Execute then the following instructions as defined with the [Vagrant instruction
 We are now ready to bootstrap the OS.
 
 - Mount the `USB-eMMC` to the `Rockpro64` SBC like the mouse, RJ45 cable, HDMI cable and boot
-- Wait a few minutes till all thesoftware will be installed
-- SSH to the VM when work is done andcopy your local ssh key
+- Wait a few minutes till all the software will be installed
+- SSH to the VM when work is done and copy your local ssh key
   ```bash
   ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.200
   ssh root@dietpi.local
