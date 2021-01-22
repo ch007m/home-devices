@@ -15,7 +15,8 @@ The list of the OS available for Rockpro64 are available [here](https://wiki.pin
 - Armbian OS
 - DietPi
 
-**Important**: As the latest releases of Armbian OS are based on Ubuntu and not Debian anymore, than we cannot use it to install OMV :-(
+**Important**: As the latest releases of Armbian OS are based on Ubuntu and not Debian anymore, then we cannot use it anymore to install OMV.
+We can nevertheless still use the `buster`, `strech` [distributions](https://www.armbian.com/rockpro64/#kernels-archive-all) which still is supported by OMV5 install [script](https://github.com/OpenMediaVault-Plugin-Developers/installScript/blob/master/install)
 
 ### How to install Armbian OS
 
