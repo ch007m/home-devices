@@ -25,7 +25,7 @@ Table of Contents
 If an `IP static address` is needed to access volumio, the ` /etc/network/interfaces` file can be edited manually as described [here](https://community.volumio.org/t/volumio-2-and-static-ip-addresses/3828/5), otherwise
 you can also use the UI and define it manually - `http://volumio.local/plugin/system_controller-network`
 
-  ![](images/static-ip-address.png?raw=true)
+  ![](../images/static-ip-address.png?raw=true)
 
 **WARNING**: Please enable the `Full Settings Mode` under the `system settings` - `http://volumio.local/plugin/system_controller-system` to been able to define the IP address using the UI !!
 
@@ -196,48 +196,48 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
   
 - From the left menu, click on the `dashboard` button
 
-  ![](images/dashboard.png?raw=true)
+  ![](../images/dashboard.png?raw=true)
 
   if not yet done, enable the `YouTube Data API v3` API/Service by clicking on the `+ Enable APIS and Service` button
   
-  ![](images/enable_apis_services_button.png?raw=true)
+  ![](../images/enable_apis_services_button.png?raw=true)
   
 - Select from the library `YouTube Data API v3` and click on the button `Enable`
 
-  ![](images/enable_youtube_service.png?raw=true)
+  ![](../images/enable_youtube_service.png?raw=true)
   
 - From the left menu, click on the `Credentials` button and select from the popup list - `Api Key`
 
-  ![](images/popup_credentials.png)
+  ![](../images/popup_credentials.png)
   
 - An api key will be generated as showed hereafter
 
-  ![](images/api_key_created.png?raw=true)
+  ![](../images/api_key_created.png?raw=true)
 
 - Within the screen listing the different `credentials`, select the one which has been created and rename it to `volumio`
 
-  ![](images/edit_api_key.png?raw=true)
+  ![](../images/edit_api_key.png?raw=true)
   
 - From the left menu, click on the `Credentials` button; next on the button `+ CREATE CREDENTIALS` and select `OAuthClient ID` from the popup list
 - Select as `application type`, `Desktop App` and name it `volumio-youtube-USERNAME`
 
-  ![](images/create_oauth_client_id.png?raw=true)
+  ![](../images/create_oauth_client_id.png?raw=true)
   
 - When this process is done, it is needed to let the API to be able to access the `Youtube Data API` to read/view content
   So from the left menu, click on the `Oauth Consent Screen` button, and next edit the application by clicking on the button `edit app`
-  ![](images/oauth_consent_edit_app.png?raw=true)
+  ![](../images/oauth_consent_edit_app.png?raw=true)
   
   Add your email address as requested and specify the name of the application: `volumio`
   
-  ![](images/oauth_consent.png?raw=true)
+  ![](../images/oauth_consent.png?raw=true)
   
 - Click on the button `Save and continue` and next click on the button `add or remove scopes` to select `.../auth/youtube.readonly`
 
-  ![](images/oauth_consent_scope.png?raw=true)
+  ![](../images/oauth_consent_scope.png?raw=true)
 
-  ![](images/oauth_consent_select_scope.png?raw=true)
+  ![](../images/oauth_consent_select_scope.png?raw=true)
 
-  ![](images/oauth_consent_scope_added.png?raw=true)
+  ![](../images/oauth_consent_scope_added.png?raw=true)
     
   Finally click on `save and continue` button. You have finished :-)
   
@@ -248,4 +248,4 @@ volumio@volumio:/data/plugins/music_service/youtube$ cat package.json
  
 - It is time now to configure the `Youtube plugin` using the `Volumio UI` and to pass as parameters your `Api Key`, `client ID` and `Secret ID` 
 
-  ![](images/volumio-youtube-plugin.png?raw=true)
+  ![](../images/volumio-youtube-plugin.png?raw=true)

@@ -21,7 +21,7 @@ To install on the SBC the needed software:
 we will customize the `dietpi.txt` file flashed within the `/boot` folder.
 As we cannot mount the SD card as writable on macos, we will then use vagrant to mount it
 
-Execute then the following instructions as defined with the [Vagrant instruction file](vagrant/README.md)
+Execute then the following instructions as defined with the [Vagrant instruction file](../vagrant/README.md)
 
 ### Access the SBC
 
@@ -37,7 +37,7 @@ We are now ready to bootstrap the OS.
   
 ### Mount a disk
 
-See [instructions](mount-a-disk.md)
+See [instructions](../mount-a-disk.md)
 
 
 

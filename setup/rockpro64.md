@@ -132,7 +132,7 @@ Import your public key to avoid having to pass the password when you ssh
 
 ### Mount a disk
 
-See [instructions](mount-a-disk.md)
+See [instructions](../mount-a-disk.md)
 
 ### Ip address
 
