@@ -18,13 +18,17 @@ Install first the NFS server
 
 **Trick**: To be able to use the NTFS format on your Raspberry Pi, you will need to install the NTFS-3g driver.
   ```bash
-  sudo apt install ntfs-3g
+  apt install ntfs-3g
   ```
 **Trick**: To add support for the `exFAT` filesystem, we will need to install two packages.
   ```bash
-  sudo apt install exfat-fuse -y
-  sudo apt install exfat-utils -y
+  apt install exfat-fuse -y
+  apt install exfat-utils -y
   ```  
+**Trick**: To support read-write access for Mac `hfsplus` format, install the following package:
+  ```bash
+  apt-get install hfsprogs
+  ```
 
 - Format the USB Hard drive as `ext4` using this command `sudo mkfs.ext4 /dev/sda`
 - Now that we have installed the NFS server-side software, we can proceed to set up an NFS share on the Raspberry Pi.
