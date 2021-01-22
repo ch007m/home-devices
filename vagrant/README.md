@@ -60,20 +60,24 @@ vb.customize ['usbfilter', 'add', '0',
 
 ## Copy the DietPi files
 
-- files will be available here:
+- Create the file to be imported and change the permissions:
+  ```bash
+  vagrant ssh -c "sudo touch /media/sdb1/boot/dietpi-{server,desktop,wifi}.txt && sudo chmod 666 /media/sdb1/boot/*.txt"
+  ```
+- Check if the files exist with the correct permissions:
   ```bash
   vagrant ssh -c "ls -la /media/sdb1/boot"
-  vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi.txt"
-  vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi-wifi.txt"
   ```
 
 - Next copy the files from the host to the VM using these commands:
   ```bash
+  flavor=server
   vagrant scp ../config/dietpi-wifi.txt /media/sdb1/boot
-  vagrant scp ../config/dietpi-{desktop,server}.txt /media/sdb1/boot
+  vagrant scp ../config/dietpi-${flavor}.txt /media/sdb1/boot
   ```
-- Rename the file to be used depending if you want to install dietpi as a `desktop` or `server`
+  **Remark**: flavor can be : `server` or `desktop`
+- Rename the file to be used depending on if you want to install DietPi as a `desktop` or `server`
   ```bash
-  flavor=desktop
-  vagrant ssh -c "mv /media/sdb1/boot/dietpi-${flavor}.txt /media/sdb1/boot/dietpi.txt
+  flavor=server
+  vagrant ssh -c "cp /media/sdb1/boot/dietpi-${flavor}.txt /media/sdb1/boot/dietpi.txt"
   ```  
