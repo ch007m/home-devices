@@ -44,5 +44,7 @@ mkfs.ext4 /dev/nvme0n1
   UUID=$(blkid | sed -n '/nvme0n1/s/.*UUID=\"\([^\"]*\)\".*/\1/p')
   echo "UUID="${UUID}" /media/dabou ext4 defaults 0 0" >> /etc/fstab
   mkdir -p /media/dabou
+  find /media/dabou/ -type d -exec chmod 755 {} \;
+  find /media/dabou/ -type f -exec chmod 644 {} \;
   mount -a
   ```

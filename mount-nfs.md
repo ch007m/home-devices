@@ -40,29 +40,45 @@ Install first the NFS server
   ```
 - Retrieve now the `UUID` and the `type` of the disk `/dev/sda*` in order to configure `fstab` qnd mount the disk
   ```bash
-  sudo blkid /dev/sda*
+  sudo blkid
   /dev/sda2: LABEL="Elements" UUID="18038afa-7403-44d4-abb5-f1d530e6060" TYPE="ext4"
   ```
 **Remark**: Please make a note of the value for both the `UUID` and the `TYPE`
 
 - Modify the `fstab` file to [mount automatically](https://www.shellhacks.com/raspberry-pi-mount-usb-drive-automatically/) the USB drive by running the command below
   ```bash
-  sudo vi /etc/fstab
+  vi /etc/fstab
   # External HD USB disk
   UUID=18038afa-7403-44d4-abb5-f1d530e6060 /media/dabou ext4 defaults,auto,users,rw,nofail 0 0
   ```
+  or
+  ```bash
+  echo "UUID=18038afa-7403-44d4-abb5-f1d530e6060 /media/dabou ext4 defaults,auto,users,rw,nofail 0 0" >> /etc/fstab
+  ```
 - Mount it
   ```bash
-  sudo mount -a
+  mount -a
   ```
 - Edit the `/etc/exports` to mount `/media/dabou`
   ```bash
-  sudo echo "/media/dabou *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)" >> /etc/exports
+  echo "/media/dabou *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)" >> /etc/exports
   ```
 - Reconfigure the files using `sudo exportfs -ra`
 - Restart the service
   ```bash
-  sudo systemctl restart nfs-kernel-server
-  sudo systemctl status nfs-kernel-server
+  systemctl restart nfs-kernel-server
+  systemctl status nfs-kernel-server
   ```
 - If the speed transfer is very slow, then execute the following instructions: https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=245931&sid=2d40fbd4bef6868d3911c98705e53f0e
+
+- All in one steps
+```bash
+UUID=$(blkid | sed -n '/nvme0n1/s/.*UUID=\"\([^\"]*\)\".*/\1/p')
+echo "UUID="${UUID}" /media/dabou ext4 defaults 0 0" >> /etc/fstab
+echo "/media/dabou *(rw,all_squash,insecure,async,no_subtree_check,anonuid=1000,anongid=1000)" >> /etc/exports
+mkdir -p /media/dabou
+find /media/dabou/ -type d -exec chmod 755 {} \;
+find /media/dabou/ -type f -exec chmod 644 {} \;
+mount -a
+systemctl restart nfs-kernel-server
+```
