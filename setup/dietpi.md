@@ -1,7 +1,7 @@
 Table of Contents
 =================
 
-### How to install DietPi Arm OS
+### How to install DietPi on Arm64 - Rockpro64
 
 - Download from `dietpi.com`, the OS that we will flash on the `eMMC` card (e.g: [DietPi_ROCKPro64-ARMv8-Buster.img](https://dietpi.com/downloads/images/DietPi_ROCKPro64-ARMv8-Buster.7z))
 - Unzip the `xz` compressed  file
