@@ -81,3 +81,15 @@ vb.customize ['usbfilter', 'add', '0',
   flavor=server
   vagrant ssh -c "cp /media/sdb1/boot/dietpi-${flavor}.txt /media/sdb1/boot/dietpi.txt"
   ```  
+- All in one steps
+```bash
+flavor=server
+vagrant up
+vagrant ssh -c "pmount /dev/sdb1"
+vagrant ssh -c "sudo touch /media/sdb1/boot/dietpi-{server,desktop,wifi}.txt && sudo chmod 666 /media/sdb1/boot/*.txt"
+vagrant scp ../config/dietpi-wifi.txt /media/sdb1/boot
+vagrant scp ../config/dietpi-${flavor}.txt /media/sdb1/boot
+vagrant ssh -c "cp /media/sdb1/boot/dietpi-${flavor}.txt /media/sdb1/boot/dietpi.txt"
+vagrant ssh -c "ls -la /media/sdb1/boot"
+vagrant halt
+```
