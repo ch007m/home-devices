@@ -37,7 +37,7 @@ See doc - https://docs.armbian.com/User-Guide_Getting-Started/#how-to-login
 ```bash
 ssh root@192.168.1.46
 ```
-*Remark*: Password needed for the first boot is `1234`. If you reboot, then the OS will ask you to change the `pwd` when it will install the Desktop environment !!
+*Remark*: Password needed for the first boot is `1234`. If you reboot, then the OS will ask you to change the `pwd` when it will finalize the installation (new pwd `armbian` for `root`) !!
 
 ### Device Autodiscovery
 
@@ -106,17 +106,17 @@ Import your public key to avoid having to pass the password when you ssh
   ```
 - Search and activate your SSID (wireless network)
 - Check you actually have an IP address
-  ```
+  ```bash
   ifconfig
   ```
 - You can also check the status of the `Wifi` mode using:
-  ```
+  ```bash
   nmcli radio
   WIFI-HW  WIFI     WWAN-HW  WWAN
   enabled  enabled  enabled  enabled
   ```
 - Let's see what's out there... scan for AP's
-  ```
+  ```bash
   nmcli dev wifi list
   IN-USE  BSSID              SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
   *       3C:37:86:FA:47:F3  WiFi-2.4-0290_2GEXT  Infra  6     130 Mbit/s  90      ▂▄▆█  WPA2
@@ -137,16 +137,16 @@ See [instructions](../mount-a-disk.md)
 
 ### Ip address
 
-- Instructions: https://docs.armbian.com/User-Guide_Getting-Started/#how-to-set-fixed-ip
+See [Instructions](https://docs.armbian.com/User-Guide_Getting-Started/#how-to-set-fixed-ip)
 
 ### Add missing DNS server
 
 - Add the missing DNS servers to the file `/etc/dhcpcd.conf` (optional)
-  ```
+  ```bash
   # Add DNS Servers
   static domain_name_servers=192.168.1.1 8.8.4.4 8.8.8.8
   ```
 - Restart the service
-  ```
+  ```bash
   sudo service dhcpcd restart
   ```
