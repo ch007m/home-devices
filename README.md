@@ -1,15 +1,15 @@
 # Home Devices
 
-- Raspberry Pi and raspbian
+- Raspbian (Pi)
   - [Setup](setup/pi4.md)
   - Configure the [HDMI](hdmi.md) parameters
   - Turn your Pi into an Open Media Storage solution using [openmediavault](omv.md)
 
-- DietPi
+- DietPi (RockPro64, Pi)
   - [Setup](setup/dietpi.md)
 
-- RockPro64less /etc/passwd
-  - [Setup](setup/rockpro64.md)
+- Armbian (RockPro64)
+  - [Setup](setup/armbian.md)
   
 # Media Center
 
