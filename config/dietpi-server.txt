@@ -109,20 +109,12 @@ AUTO_SETUP_GLOBAL_PASSWORD=dietpi
 # - DietPi will automatically install all pre-reqs (e.g. ALSA/X11 for desktops etc)
 # - E.g. the following (without the leading "#") will install the LXDE desktop automatically on first boot:
 
-# Alsa
-AUTO_SETUP_INSTALL_SOFTWARE_ID=5
 # Vim
 AUTO_SETUP_INSTALL_SOFTWARE_ID=20
-# Xfce desktop
-AUTO_SETUP_INSTALL_SOFTWARE_ID=25
-# TigerVNC server
-AUTO_SETUP_INSTALL_SOFTWARE_ID=28
+
 # NFS Server
 AUTO_SETUP_INSTALL_SOFTWARE_ID=109
-# Chromium
-AUTO_SETUP_INSTALL_SOFTWARE_ID=113
-# Next cloud
-AUTO_SETUP_INSTALL_SOFTWARE_ID=114
+
 # Avahi Daemon
 AUTO_SETUP_INSTALL_SOFTWARE_ID=152
 

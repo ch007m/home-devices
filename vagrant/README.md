@@ -1,4 +1,4 @@
-## HowTo mount a USB drive
+## Configure the Vagrant USB Drive
 
 See - https://gist.github.com/brysonian/958d760ff5e8c7aecc45d17c4a92b1c7
 
@@ -32,11 +32,18 @@ vb.customize ['usbfilter', 'add', '0',
   '--vendorid', '0x14cd',
   '--productid', '0x1212']      
 ```
+
+## Launch vagrant and (un)mount the usb drive
+
 - Once the machine is up, ssh to it or execute remotely the commands
   ```bash
   vagrant up
   vagrant ssh 
   ```
+- To copy the files, install the following plugin
+  ```bash
+  vagrant plugin install vagrant-scp
+  ```  
 - To mount the device more easily, install the following tool:
   ```bash
   vagrant ssh -c "sudo apt-get install pmount"
@@ -49,19 +56,24 @@ vb.customize ['usbfilter', 'add', '0',
   ```bash
   vagrant ssh -c "pmount /dev/sdb1"
   ```
+- To unmount, execute this command `pumount /dev/sdb1`  
+
+## Copy the DietPi files
+
 - files will be available here:
   ```bash
   vagrant ssh -c "ls -la /media/sdb1/boot"
   vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi.txt"
   vagrant ssh -c "sudo chmod 666 /media/sdb1/boot/dietpi-wifi.txt"
   ```
-- To unmount, execute this command `pumount /dev/sdb1`
-- To copy the files, install the following plugin
-  ```bash
-  vagrant plugin install vagrant-scp
-  ```
-- Next copy the files from the host to the VM using this command
+
+- Next copy the files from the host to the VM using these commands:
   ```bash
   vagrant scp ../config/dietpi-wifi.txt /media/sdb1/boot
-  vagrant scp ../config/dietpi.txt /media/sdb1/boot
+  vagrant scp ../config/dietpi-{desktop,server}.txt /media/sdb1/boot
   ```
+- Rename the file to be used depending if you want to install dietpi as a `desktop` or `server`
+  ```bash
+  flavor=desktop
+  vagrant ssh -c "mv /media/sdb1/boot/dietpi-${flavor}.txt /media/sdb1/boot/dietpi.txt
+  ```  
