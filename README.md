@@ -23,5 +23,6 @@
 
 - [Mount](mount-a-disk.md) a disk by configuring `/etc/fstab`
 - [Configure](samba-debian.md) Samba on debian  
+- Copy/backup [hard disk](mount-a-disk.md#copy-hard-disk-to-another) to another one
 - Setup [NFS and mount](mount-nfs.md) an USB drive
 - Rip DVD using [handbrake](rip-dvd.md)

@@ -48,3 +48,14 @@ mkfs.ext4 /dev/nvme0n1
   find /media/dabou/ -type f -exec chmod 644 {} \;
   mount -a
   ```
+## Copy Hard disk to another
+
+They are different strategies to backup a hard disk to another such as using `dd`
+```bash
+dd if=/dev/nvme0n1 of=/dev/sda
+```
+or `rsync` - see [tuto](http://doc.ubuntu-fr.org/rsync). To copy all the content created under the source directory, then append `/` end of the path
+```bash
+rsync -r -avhP --exclude={'._.DS_Store','.DS_Store','._*'} /media/dabou/ /media/dabou2/
+```
+
