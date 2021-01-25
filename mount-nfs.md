@@ -15,7 +15,6 @@ Install first the NFS server
   ```bash
   sudo apt install nfs-kernel-server
   ```
-
 **Trick**: To be able to use the NTFS format on your Raspberry Pi, you will need to install the NTFS-3g driver.
   ```bash
   apt install ntfs-3g
@@ -25,9 +24,10 @@ Install first the NFS server
   apt install exfat-fuse -y
   apt install exfat-utils -y
   ```  
-**Trick**: To support read-write access for Mac `hfsplus` format, install the following package:
+**Trick**: To support read-write access for Mac `hfsplus` format, install the following package and if needed force to `remount` the volume
   ```bash
   apt-get install hfsprogs
+  mount -t hfsplus -o remount,force,rw /media/dabou2
   ```
 
 - Format the USB Hard drive as `ext4` using this command `sudo mkfs.ext4 /dev/sda`
@@ -86,3 +86,7 @@ find /media/dabou/ -type f -exec chmod 644 {} \;
 mount -a
 systemctl restart nfs-kernel-server
 ```
+## Fine tuning
+
+- https://www.slashroot.in/how-do-linux-nfs-performance-tuning-and-optimization
+- https://photographylife.com/afp-vs-nfs-vs-smb-performance
