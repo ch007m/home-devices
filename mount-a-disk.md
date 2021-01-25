@@ -59,3 +59,12 @@ or `rsync` - see [tuto](http://doc.ubuntu-fr.org/rsync). To copy all the content
 rsync -r -avhP --exclude={'._.DS_Store','.DS_Store','._*'} /media/dabou/ /media/dabou2/
 ```
 
+## Schedule backup every day
+
+See documentation [here](https://www.howtogeek.com/135533/how-to-use-rsync-to-backup-your-data-on-linux/)
+
+- Edit the `crontab` using `crontab -e`
+- Include the command to back up every night the content of the source directory (e.g. NMVe disk) to the external SB disk
+```bash
+0 22 * * * rsync -r -avhP --exclude={'._.DS_Store','.DS_Store','._*'} /media/dabou/ /media/dabou2/
+```
