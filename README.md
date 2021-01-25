@@ -22,5 +22,6 @@
 # Common instructions
 
 - [Mount](mount-a-disk.md) a disk by configuring `/etc/fstab`
+- [Configure](samba-debian.md) Samba on debian  
 - Setup [NFS and mount](mount-nfs.md) an USB drive
 - Rip DVD using [handbrake](rip-dvd.md)
