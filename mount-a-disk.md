@@ -9,12 +9,24 @@
   umount /dev/sda -l
   ```
 - Next execute `wipefs -a /dev/sda` to start from a fresh disk or use `dd if=/dev/zero of=/dev/sda bs=512 count=1 status=progress`
-- Partition the HD
+- Partition the HD nd format it
 ```bash
-```
-- Format it
-```bash
+echo "Writing zeros to partition: /dev/sda1"
+dd if=/dev/zero of=/dev/sda1 bs=4K count=10
 
+echo "Writing zeros to partition table: /dev/sda"
+dd if=/dev/zero of=/dev/sda bs=4K count=1337
+
+echo "Creating partition table, with target type: gpt"
+parted -s /dev/sda mklabel gpt
+parted -s /dev/sda mkpart primary 0% 100%
+
+echo "Format the disk using exFAT format type"
+mkfs.exfat /dev/sda1
+
+echo "Create mount point"
+mkdir -p /mnt/A2CB-3C1B
+/dev/sda1 /mnt/A2CB-3C1B
 ```
 
 ### Automate the partitioning of the disk
@@ -39,16 +51,17 @@ or
 ```bash
 sfdisk --dump /dev/sda > sda.dump && cat sda.dump
 label: gpt
-label-id: 9F9ECBFF-1114-4333-846B-61CF8CFE12B1
+label-id: BC5F9147-3F21-4F0B-A285-DE866297DA43
 device: /dev/sda
 unit: sectors
 first-lba: 34
 last-lba: 3906963422
 
-/dev/sda1 : start=          40, size=      409600, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, uuid=4C30D8D9-0D24-4D72-B997-26260F56EA69, name="EFI System Partition"
-/dev/sda2 : start=      411648, size=  3906549760, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=83CC6B88-E1D7-422F-B446-5B51947B87BD
-
-cat sda.dump | sudo sfdisk /dev/sda
+/dev/sda1 : start=        2048, size=  3906959360, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=00B515BC-DEA9-490B-A350-CB77A7971F02, name="primary"
+```
+- Format the disk using the partition cfg
+```bash
+cat config/sda.cfg | sudo sfdisk /dev/sda
 ```
 
 ## Mount a disk
@@ -80,22 +93,25 @@ blkid
 ```bash
 UUID="44788b34-78e3-3cf9-a98d-07cbb18f8fee" /mnt/dabou2 hfsplus defaults 0 0
 ```
+- For an `exFAT` formatted disk, add the `uid` and `groupid` of the user as you cannot change the ownership using the following command `chown -R ....` - see [discussion](https://stackoverflow.com/questions/25559700/chown-command-returning-operation-not-permitted)
+  ```bash
+  UUID=A2CB-3C1B /mnt/A2CB-3C1B exfat noatime,lazytime,rw,nofail,noauto,x-systemd.automount,gid=1000,uid=1000
+  ```
 - To format the `NVMe` SSD disk and use `ext4` as format, execute these commands:
 ```bash
 fdisk /dev/nvme0n1
 mkfs.ext4 /dev/nvme0n1
 ```
-**Remark**: Next, you should be able to get the UUID s edit the `/etc/fstab` file
+**Remark**: Next, you should be able to get the UUID
+
 - Mount the volumes
   ```bash
-  mkdir -p /media/dabou
-  mkdir -p /media/dabou2
   mount -a
   ```
 - All in one steps
   ```bash
   UUID=$(blkid | sed -n '/nvme0n1/s/.*UUID=\"\([^\"]*\)\".*/\1/p')
-  echo "UUID="${UUID}" /media/dabou ext4 defaults 0 0" >> /etc/fstab
+  echo "UUID="${UUID}" /media/dabou ext4 noatime,lazytime,rw,nofail,noauto,x-systemd.automount" >> /etc/fstab
   mkdir -p /media/dabou
   find /media/dabou/ -type d -exec chmod 755 {} \;
   find /media/dabou/ -type f -exec chmod 644 {} \;
@@ -103,7 +119,7 @@ mkfs.ext4 /dev/nvme0n1
   ```
 ## Copy Hard disk to another
 
-They are different strategies to backup a hard disk to another such as using `dd`
+They are different strategies to back up a hard disk to another such as using `dd`
 ```bash
 dd if=/dev/nvme0n1 of=/dev/sda
 ```
