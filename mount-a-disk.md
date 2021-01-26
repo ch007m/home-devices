@@ -1,3 +1,56 @@
+## Format a disk using FAT64 (= exfat)
+
+- [Formating a extFAT HD](https://matthew.komputerwiz.net/2015/12/13/formatting-universal-drive.html)
+- [How to partition using different tools](https://stackpointer.io/unix/linux-script-to-partition-disk/632/)
+- [Remove Hard Disk data](https://how-to.fandom.com/wiki/How_to_wipe_a_hard_drive_clean_in_Linux)
+
+- To clean the hard disk, umount it first
+  ```bash
+  umount /dev/sda -l
+  ```
+- Next execute `wipefs -a /dev/sda` to start from a fresh disk or use `dd if=/dev/zero of=/dev/sda bs=512 count=1 status=progress`
+- Partition the HD
+```bash
+```
+- Format it
+```bash
+
+```
+
+### Automate the partitioning of the disk
+
+- Automate the creation of the partition on the disk
+```bash
+Simply create a file (e.g. fdisk_cmds) that contains the commands, as for instance:
+
+n
+1
+    # This is a blank line to select a default response
+q
+
+fdisk /dev/sda < fdisk_cmds
+
+or
+
+(echo p; echo d; ... ; echo w) | fdisk /dev/sda
+```
+
+- Get the disk partition definition and reuse it to format the disk
+```bash
+sfdisk --dump /dev/sda > sda.dump && cat sda.dump
+label: gpt
+label-id: 9F9ECBFF-1114-4333-846B-61CF8CFE12B1
+device: /dev/sda
+unit: sectors
+first-lba: 34
+last-lba: 3906963422
+
+/dev/sda1 : start=          40, size=      409600, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, uuid=4C30D8D9-0D24-4D72-B997-26260F56EA69, name="EFI System Partition"
+/dev/sda2 : start=      411648, size=  3906549760, type=EBD0A0A2-B9E5-4433-87C0-68B6B72699C7, uuid=83CC6B88-E1D7-422F-B446-5B51947B87BD
+
+cat sda.dump | sudo sfdisk /dev/sda
+```
+
 ## Mount a disk
 
 - Check if the disks (ssd, external) are well present

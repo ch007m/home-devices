@@ -18,7 +18,7 @@ Address:            p=0x1212;v=0x14cd;s=0x00000a5435d2d752;l=0x14323000
 Current State:      Busy
 ```
 
-- Edit the Vagrantfile to change the `usbfilter/vendorId and productId` 
+- Edit the Vagrantfile to change the `usbfilter` property and parameters `vendorId` and `productId` 
 ```
 vb.customize ['usbfilter', 'add', '0',
   '--target', :id,
@@ -40,7 +40,7 @@ vb.customize ['usbfilter', 'add', '0',
   vagrant up
   vagrant ssh 
   ```
-- To copy the files, install the following plugin
+- To copy the files, install the following plugin (optional)
   ```bash
   vagrant plugin install vagrant-scp
   ```  
