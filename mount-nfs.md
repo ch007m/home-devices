@@ -88,5 +88,6 @@ systemctl restart nfs-kernel-server
 ```
 ## Fine tuning
 
+- [Benchmark](https://serverfault.com/questions/324438/measure-benchmark-the-speed-latency-of-file-access-on-a-mounted-nfs-share)
 - https://www.slashroot.in/how-do-linux-nfs-performance-tuning-and-optimization
 - https://photographylife.com/afp-vs-nfs-vs-smb-performance
